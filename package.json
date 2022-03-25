@@ -1,29 +1,30 @@
 {
-  "name": "crud-project",
-  "version": "1.0.0",
-  "description": "CRUD Built with Nodejs, ExpressJS, MongoDB, and EJS",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "IDika",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.2",
-    "compression": "^1.7.4",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.3",
-    "express-ejs-layouts": "^2.5.1",
-    "express-session": "^1.17.2",
-    "express-validator": "^6.14.0",
-    "helmet": "^5.0.2",
-    "method-override": "^3.0.0",
-    "mongoose": "^6.2.8",
-    "morgan": "^1.10.0",
-    "validator": "^13.7.0"
-  }
+    "name": "crud-project",
+    "version": "1.0.0",
+    "description": "CRUD Built with Nodejs, ExpressJS, MongoDB, and EJS",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ."
+    },
+    "author": "IDika",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.2",
+        "compression": "^1.7.4",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.0",
+        "ejs": "^3.1.6",
+        "express": "^4.17.3",
+        "express-ejs-layouts": "^2.5.1",
+        "express-session": "^1.17.2",
+        "express-validator": "^6.14.0",
+        "helmet": "^5.0.2",
+        "method-override": "^3.0.0",
+        "mongoose": "^6.2.8",
+        "morgan": "^1.10.0",
+        "validator": "^13.7.0"
+    }
 }
