@@ -1,0 +1,48 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-9">
+            <h2>Account List</h2>
+
+            <% if (success.length !== 0) { %>
+            <div class="alert alert-success" role="alert"><%= success %></div>
+            <% } %>
+            <% if (error.length !== 0) { %>
+            <div class="alert alert-danger" role="alert"><%= error %></div>
+            <% } %>
+            <a href="/create/" class="btn btn-primary mb-2">Create Account</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (!account || account.length == 0) { %>
+                    <tr>
+                        <td colspan="4">
+                            <div class="alert alert-danger" role="alert">No account found.</div>
+                        </td>
+                    </tr>
+                    <% } %> <% account.forEach(acc => { %>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><%= acc.username %></td>
+                        <td><%= acc.email %></td>
+                        <td>
+                            <a href="/edit/<%= acc._id.toString() %>" class="btn btn-warning badge rounded-pill"><i class="bi bi-pencil-square"></i> Update</a>
+                            <form method="post" action="/" class="d-inline">
+                                <input type="hidden" name="_method" value="delete" />
+                                <input type="hidden" name="_id" value="<%= acc._id.toString() %>" />
+                                <button type="submit" class="btn btn-danger badge rounded-pill"><i class="bi bi-trash3-fill"></i> Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Create Account</h2>
+            <% if (error.length !== 0) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% error.forEach(err => { %>
+                    <li><%= err.msg %></li>
+                    <% }) %>
+                </ul>
+            </div>
+            <% } %>
+            <form method="post" action="/">
+                <input type="hidden" name="_method" value="put" />
+                <input type="hidden" name="_id" value="<%= account.id.toString() %>" />
+                <input type="hidden" name="oldUsername" value="<%= account.username %>" />
+                <input type="hidden" name="oldEmail" value="<%= account.email %>" />
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" value="<%= account.username %>" />
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= account.email %>" />
+                </div>
+                <button type="submit" class="btn btn-primary">Update Data</button>
+            </form>
+        </div>
+    </div>
+</div>
