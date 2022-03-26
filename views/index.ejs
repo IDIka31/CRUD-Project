@@ -26,9 +26,9 @@
                             <div class="alert alert-danger" role="alert">No account found.</div>
                         </td>
                     </tr>
-                    <% } %> <% account.forEach(acc => { %>
+                    <% } %> <% account.forEach((acc, i) => { %>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row"><%= i+1 %></th>
                         <td><%= acc.username %></td>
                         <td><%= acc.email %></td>
                         <td>
