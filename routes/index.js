@@ -59,15 +59,17 @@ app.post(
 );
 
 app.delete('/', async (req, res) => {
-    const account = accountModel.findOne({ _id: req.body._id });
-    if (account) {
-        await accountModel.deleteOne({ _id: req.body._id });
-        req.flash('success', 'Account deleted successfully!');
-        res.redirect('/');
-    } else {
-        req.flash('error', 'Account not found!');
-        res.redirect('/');
-    }
+    accountModel
+        .findOne({ _id: req.params._id })
+        .then(() => {
+            await accountModel.deleteOne({ _id: req.body._id });
+            req.flash('success', 'Account deleted successfully!');
+            res.redirect('/');
+        })
+        .catch(() => {
+            req.flash('error', 'Account not found!');
+            res.redirect('/');
+        });
 });
 
 app.put(
@@ -122,20 +124,21 @@ app.put(
 );
 
 app.get('/edit/:_id', async (req, res) => {
-    const account = await accountModel.findOne({ _id: req.params._id });
-
-    if (account) {
-        return res.render('update', {
-            layout: 'layouts/main-layout',
-            title: 'Update Account',
-            success: req.flash('success'),
-            error: req.flash('error'),
-            account,
+    accountModel
+        .findOne({ _id: req.params._id })
+        .then(() => {
+            return res.render('update', {
+                layout: 'layouts/main-layout',
+                title: 'Update Account',
+                success: req.flash('success'),
+                error: req.flash('error'),
+                account,
+            });
+        })
+        .catch(() => {
+            req.flash('error', 'Account not found!');
+            res.redirect('/');
         });
-    } else {
-        req.flash('error', 'Account not found!');
-        res.redirect('/');
-    }
 });
 
 app.get('/create', (req, res) => {
