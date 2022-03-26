@@ -58,10 +58,10 @@ app.post(
     }
 );
 
-app.delete('/', async (req, res) => {
+app.delete('/', (req, res) => {
     accountModel
         .findOne({ _id: req.params._id })
-        .then(() => {
+        .then(async () => {
             await accountModel.deleteOne({ _id: req.body._id });
             req.flash('success', 'Account deleted successfully!');
             res.redirect('/');
@@ -123,7 +123,7 @@ app.put(
     }
 );
 
-app.get('/edit/:_id', async (req, res) => {
+app.get('/edit/:_id', (req, res) => {
     accountModel
         .findOne({ _id: req.params._id })
         .then(() => {
