@@ -123,7 +123,7 @@ app.put(
 );
 
 app.get('/edit/:_id', (req, res) => {
-    accountModel.findOne({ _id: req.params._id }, (err) => {
+    accountModel.findOne({ _id: req.params._id }, (err, account) => {
         if (err) {
             req.flash('error', 'Account not found!');
             return res.redirect('/');
