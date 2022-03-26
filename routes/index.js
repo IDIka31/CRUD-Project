@@ -91,7 +91,7 @@ app.put(
                 throw new Error('Email cannot be empty!');
             }
             const account = await accountModel.findOne({ email: value });
-            if (account.email !== req.body.oldEmail && account) {
+            if (value !== req.body.oldEmail && account) {
                 throw new Error('Email already exists!');
             }
 
