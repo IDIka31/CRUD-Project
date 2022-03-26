@@ -59,17 +59,16 @@ app.post(
 );
 
 app.delete('/', (req, res) => {
-    accountModel
-        .findOne({ _id: req.params._id })
-        .then(async () => {
-            await accountModel.deleteOne({ _id: req.body._id });
-            req.flash('success', 'Account deleted successfully!');
-            res.redirect('/');
-        })
-        .catch(() => {
+    accountModel.findOne({ _id: req.params._id }, async (err) => {
+        if (err) {
             req.flash('error', 'Account not found!');
-            res.redirect('/');
-        });
+            return res.redirect('/');
+        }
+
+        await accountModel.deleteOne({ _id: req.body._id });
+        req.flash('success', 'Account deleted successfully!');
+        res.redirect('/');
+    });
 });
 
 app.put(
@@ -124,21 +123,20 @@ app.put(
 );
 
 app.get('/edit/:_id', (req, res) => {
-    accountModel
-        .findOne({ _id: req.params._id })
-        .then(() => {
-            return res.render('update', {
-                layout: 'layouts/main-layout',
-                title: 'Update Account',
-                success: req.flash('success'),
-                error: req.flash('error'),
-                account,
-            });
-        })
-        .catch(() => {
+    accountModel.findOne({ _id: req.params._id }, (err) => {
+        if (err) {
             req.flash('error', 'Account not found!');
-            res.redirect('/');
+            return res.redirect('/');
+        }
+
+        return res.render('update', {
+            layout: 'layouts/main-layout',
+            title: 'Update Account',
+            success: req.flash('success'),
+            error: req.flash('error'),
+            account,
         });
+    });
 });
 
 app.get('/create', (req, res) => {
